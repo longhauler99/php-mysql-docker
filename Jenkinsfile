@@ -23,7 +23,7 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                sh './vendor/phpunit --configuration phpunit.xml'
+                sh 'phpunit --configuration phpunit.xml'
             }
         }
 
