@@ -2,25 +2,27 @@ pipeline {
     agent any
 
     stages {
-        stage('Install Composer') {
+        stage('Clean Vendor Directory') {
             steps {
-                sh '''
-                if ! [ -x "$(command -v composer)" ]; then
-                  echo "Installing Composer..."
-                  php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-                  php composer-setup.php
-                  php -r "unlink('composer-setup.php');"
-                  sudo mv composer.phar /usr/local/bin/composer
-                else
-                  echo "Composer is already installed"
-                fi
-                '''
+                sh 'rm -rf vendor'
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                sh 'composer install'
+                sh 'ls -la vendor/bin'
+            }
+        }
+
+        stage('Make PHPUnit Executable') {
+            steps {
+                sh 'chmod +x vendor/bin/phpunit'
             }
         }
 
         stage('Run Tests') {
             steps {
-                sh 'ls -l vendor/bin'
                 sh './vendor/bin/phpunit --configuration phpunit.xml'
             }
         }
