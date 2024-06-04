@@ -3,7 +3,7 @@
 // Database connection parameters
 $servername = "db"; // Change this to your MySQL server hostname
 $username = "root"; // Change this to your MySQL username
-$password = ""; // Change this to your MySQL password
+$password = "root"; // Change this to your MySQL password
 $database = "cajcms2"; // Change this to your MySQL database name
  
 // Create connection
