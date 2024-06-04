@@ -17,7 +17,7 @@ pipeline {
 
         stage('Make PHPUnit Executable') {
             steps {
-                sh 'chmod +x vendor/phpunit'
+                sh 'chmod +x vendor/bin/phpunit'
             }
         }
 
