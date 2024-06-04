@@ -17,9 +17,10 @@ pipeline {
                 '''
             }
         }
-        
+
         stage('Run Tests') {
             steps {
+                sh 'ls -l vendor/bin'
                 sh './vendor/bin/phpunit --configuration phpunit.xml'
             }
         }
