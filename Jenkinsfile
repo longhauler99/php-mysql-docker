@@ -2,27 +2,21 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Install Dependencies') {
             steps {
-                echo "Running ${env.BUILD_ID} for ${env.JOB_NAME} on ${env.JENKINS_URL}"
+                sh 'composer install'
             }
         }
 
-        stage('Test') {
+        stage('Run Tests') {
             steps {
-                echo 'Testing..'
+                sh './vendor/bin/phpunit --configuration phpunit.xml'
             }
         }
 
         stage('Deploy') {
             steps{
                 echo 'Deploying.....'
-            }
-        }
-
-        stage('Celebration') {
-            steps{
-                echo 'Hurraaay.....'
             }
         }
     }
