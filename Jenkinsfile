@@ -19,5 +19,11 @@ pipeline {
                 echo 'Deploying.....'
             }
         }
+
+        stage('Celebration') {
+            steps{
+                echo 'Hurraaay.....'
+            }
+        }
     }
 }
