@@ -17,13 +17,13 @@ pipeline {
 
         stage('Make PHPUnit Executable') {
             steps {
-                sh 'chmod +x vendor/bin/phpunit'
+                sh 'chmod +x vendor/phpunit'
             }
         }
 
         stage('Run Tests') {
             steps {
-                sh './vendor/bin/phpunit --configuration phpunit.xml'
+                sh './vendor/phpunit --configuration phpunit.xml'
             }
         }
 
